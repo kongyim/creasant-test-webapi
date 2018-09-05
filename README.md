@@ -16,12 +16,12 @@ docker run -d -p 8080:80 --name creasant-test-webapi creasant-test-webapi
 
 ## step by step creating this example
 
-### create .NET webapi project
+### 1. create .NET webapi project
 ```
 dotnet new webapi -o creasant-test-webapi --no-https
 ```
 
-### create Dockerfile (./Dockerfile)
+### 2. create Dockerfile (./Dockerfile)
 ```
 FROM microsoft/dotnet:sdk AS build-env
 WORKDIR /app
@@ -42,18 +42,18 @@ COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "creasant-test-webapi.dll"]
 ```
 
-### create docker ignore (./.dockerignore)
+### 3. create docker ignore (./.dockerignore)
 ```
 bin\
 obj\
 ```
 
-### build docker image
+### 4. build docker image
 ```
 docker build -t creasant-test-webapi .
 ```
 
-### run docker image as a container
+### 5. run docker image as a container
 ```
 docker run -d -p 8080:80 --name creasant-test-webapi creasant-test-webapi
 ```
